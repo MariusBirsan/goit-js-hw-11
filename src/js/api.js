@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://pixabay.com/api/';
+export const ENDPOINT = 'https://pixabay.com/api/';
 export const API_KEY = '40903961-e07635d5dbea58b7d17abeecb';
 export const options = {
   params: {

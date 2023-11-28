@@ -3,7 +3,7 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import { elements } from './elements';
-import { BASE_URL, options } from './api';
+import { ENDPOINT, options } from './api';
 
 const { galleryEl, searchInput, searchForm, loaderEl } = elements;
 
@@ -79,7 +79,7 @@ async function loadMore() {
   options.params.page += 1;
   try {
     showLoader();
-    const response = await axios.get(BASE_URL, options);
+    const response = await axios.get(ENDPOINT, options);
     const hits = response.data.hits;
     renderGallery(hits);
   } catch (err) {
@@ -104,8 +104,8 @@ function onScrollHandler() {
   }
 }
 
-async function onFormSybmit(e) {
-  e.preventDefault();
+async function onFormSybmit(event) {
+  event.preventDefault();
   options.params.q = searchInput.value.trim();
   if (options.params.q === '') {
     return;
@@ -116,7 +116,7 @@ async function onFormSybmit(e) {
 
   try {
     showLoader();
-    const response = await axios.get(BASE_URL, options);
+    const response = await axios.get(ENDPOINT, options);
     totalHits = response.data.totalHits;
     const hits = response.data.hits;
     if (hits.length === 0) {
